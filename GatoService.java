@@ -22,19 +22,20 @@ import javax.swing.JOptionPane;
  */
 public class GatoService {
     
-    //
+    
     public void despliegaImagen(Gato unGato,ImageIcon img) throws IOException{
         //crear menu para el Joptio
         String menu = "Opciones: \n"
-                + "1. Ver Opciones \n"
+                + "1. ver otro gato\n"
                 + "2. Regresar \n";
         
-        String[] opciones = {"Ver otro gato", "Regresar"};
-        
+        String[] opciones = {"Ver opciones", "Regresar"};
         String idGato = unGato.getId();
         String opcion = (String)JOptionPane.showInputDialog(null,menu,idGato, JOptionPane.INFORMATION_MESSAGE, img,opciones,opciones[0]);
         
+        
         int seleccion = -1;
+        
         for(int i=0; i<opciones.length;i++){
             if(opciones.equals(opciones[i])){
                 seleccion = i;
@@ -43,12 +44,11 @@ public class GatoService {
         switch (seleccion){
             case 0 -> getGatos();
             default-> {
-               break;
+                break;
             }
         }
     }
-    
-    
+
     
     public void getGatos() throws IOException {
  OkHttpClient client = new OkHttpClient();
@@ -70,9 +70,13 @@ public class GatoService {
         //Crear un objeto de la clase Gson
         Gson gson = new Gson();
         Gato gato = gson.fromJson(gatoJson, Gato.class);
+        //return gato;
+        
         //Probando la informacion que este en el objeto gato
         System.out.println("Gato id: " + gato.getId());
         System.out.println("Gato url: " + gato.getUrl());
+        
+        System.out.println("Gato guardado en la pila");
 
         Image image = null;
         try {

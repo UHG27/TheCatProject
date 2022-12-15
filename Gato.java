@@ -12,6 +12,7 @@ public class Gato {
     private String id;
     private String url;
     private String image;
+    
 
     public String getId() {
         return id;
